@@ -142,3 +142,43 @@ switch(respuesta){
         alert("Opción no válida")
         break
 }
+
+class Usuario {
+    constructor(username, email, password){
+        this.username = username
+        this.email = email
+        this.password = password
+    }
+}
+
+const usuarios = []
+
+const form = document.getElementById("idForm")
+const divUsers = document.getElementById("divUsers")
+const botonUsers = document.getElementById("botonUsers")
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    let username = document.getElementById("idUser").value
+    let email = document.getElementById("idEmail").value
+    let password = document.getElementById("idPassword").value
+
+    const usuario = new Usuario (username, email, password)
+    usuarios.push(usuario)
+    console.log(usuarios)
+
+    form.reset() 
+})
+
+botonUsers.addEventListener("click", () => {
+    usuarios.forEach(usuario => {
+        divUsers.innerHTML += `
+        <div class = "card" style = "width: 18rem; margin:3px;">
+            <div class = "card-body>
+                <h5 class = "card-title">${usuario.username}</h5>
+                <p class = "card-text">${usuario.email}</p>
+            </div>
+        </div>`
+    })
+})
